@@ -1,0 +1,918 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>E-Government</title>
+<link rel="shortcut icon" href="../favicon.ico">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+	<link rel="stylesheet" href="css/themes/default/jquery.mobile-1.4.3.min.css">
+	<link rel="stylesheet" href="_assets/css/jqm-demos.css">
+    <link rel="stylesheet" href="themes/my-custom-theme.min.css" />
+    <link rel="stylesheet" href="themes/jquery.mobile.icons.min.css" />  
+	<script src="js/jquery.js"></script>
+	<script src="_assets/js/index.js"></script>
+	<script src="js/jquery.mobile-1.4.3.min.js"></script>
+   	<script src="js/script.js"></script>
+	<style>
+	
+	#chat_row img{
+	z-index:999;
+	width:40px;
+	display: inline-block;
+}
+.left1{
+	float:left;
+}
+ .right1{
+	float:right;
+}
+/* ============================================================================================================================
+== BUBBLE WITH A RIGHT-ANGLED TRIANGLE
+** ============================================================================================================================ */
+
+/* THE SPEECH BUBBLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.triangle-right {
+	position:relative;
+	
+	padding-top:3px;
+	padding-bottom:1px;
+	padding-left:3px;
+	margin-bottom: 5px;;
+	color: #000;
+	background: #666; /* default background for browsers without gradient support */
+	/* css3 */
+	background:-webkit-gradient(linear, 3 0, 5 100%, from(# 999), to(#  #FC6));
+	background:-moz-linear-gradient( #2e88c4, #075698);
+	background:-o-linear-gradient(#2e88c4, #075698);
+	background:linear-gradient(#2e88c4, #075698);
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	max-width:150px;
+	display:block;
+	text-align:left;
+	font-size:16px;
+	word-wrap: break-word;
+	
+}
+
+/* Variant : for top positioned triangle
+------------------------------------------ */
+
+.triangle-right.top {
+	background:-webkit-gradient(linear, 0 0, 0 100%, from(#075698), to(#2e88c4));
+	background:-moz-linear-gradient(#075698, #2e88c4);
+	background:-o-linear-gradient(#075698, #2e88c4);
+	background:linear-gradient(#075698, #2e88c4);
+}
+
+/* Variant : for left positioned triangle
+------------------------------------------ */
+
+.triangle-right.left {
+	margin-left:35px;
+	background:# C00;
+}
+
+/* Variant : for right positioned triangle
+------------------------------------------ */
+
+.triangle-right.right {
+	margin-right:-30px;
+	background:# CCC;
+	right:-155px;
+}
+
+/* THE TRIANGLE
+------------------------------------------------------------------------------------------------------------------------------- */
+
+.triangle-right:after {
+	content:"";
+	position:absolute;
+	bottom:-20px; /* value = - border-top-width - border-bottom-width */
+	left:50px; /* controls horizontal position */
+	border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+	border-style:solid;
+    /* reduce the damage in FF3.0 */
+    display:block; 
+    width:0;
+}
+
+/* Variant : top
+------------------------------------------ */
+
+.triangle-right.top:after {
+	top:-20px; /* value = - border-top-width - border-bottom-width */
+	right:50px; /* controls horizontal position */
+	bottom:auto;
+	left:auto;
+	border-width:20px 20px 0 0; /* vary these values to change the angle of the vertex */
+	border-color:transparent #075698; 
+}
+
+/* Variant : left
+------------------------------------------ */
+
+.triangle-right.left:after {
+	top:16px; 
+	left:-40px; /* value = - border-left-width - border-right-width */
+	bottom:auto;
+	border-width:15px 40px 0 0; /* vary these values to change the angle of the vertex */
+	border-color:transparent #075698; 
+}
+
+/* Variant : right
+------------------------------------------ */
+
+.triangle-right.right:after {
+	top:16px; 
+	right:-40px; /* value = - border-left-width - border-right-width */
+	bottom:auto;
+    left:auto;
+	border-width:15px 0 0 40px; /* vary these values to change the angle of the vertex */
+	border-color:transparent #075698 ; 
+}
+
+
+
+#chat-wrap                      { height: 400px;  margin: 0 0 0px 0;}
+#chat-area{ 
+height: 400px;  
+
+overflow:scroll;
+float: none;
+width: auto;
+}
+#chat-wrapGroup                      { height: 420px;  margin: 0 0 0px 0;}
+#chat-areaGroup{ 
+height: 420px;  
+
+overflow:scroll;
+float: none;
+width: auto;
+}
+#labelUser{  
+border-radius:1px;
+padding-left:10px; 
+float: none;
+text-decoration:none;
+width: auto;
+height: 60px;
+text-decoration: none;
+
+border-radius:10px;
+}
+#chat-area span                 { color: white; background: #006; padding: 4px 8px; -moz-border-radius: 5px; -webkit-border-radius: 8px; margin: 0 5px 0 0; }
+#chat-area p {
+	/*padding: 5px 0;
+	
+	
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+
+	word-wrap: break-word;
+	width: auto;
+	
+	padding-left:10px;
+	padding-right:10px;*/
+	
+	    }
+		#chat1{
+		border-bottom: 1px solid  #096;
+		border-radius: 5px 30px 50px 3px;
+		margin-bottom:15px;
+	    margin-top:15px;
+		background: #F9F7F9;
+		float: right;
+		clear: both;
+		padding-bottom:5px;
+		padding-top:5px;
+		padding-left:10px;
+		padding-right:5px;
+		word-wrap: break-word;
+		min-height:10px;
+		max-height:300px;
+	}  
+		#chat2{
+			
+		border-bottom: 1px solid  #096;
+		border-radius: 30px 5px 5px 30px;
+		margin-bottom:15px;
+	    margin-top:15px;
+		background: #F9F7F9;
+		float: left;
+		clear:both;
+		padding-bottom:5px;
+		padding-top:5px;
+		padding-left:5px;
+		padding-right:10px;
+		word-wrap: break-word;
+		max-width: 300px;
+		
+	}
+		
+		
+#chatdisplay {
+	padding: 5px 0;
+	border-bottom: 1px solid  #096;
+	background: #F9F7F9;
+	-webkit-border-radius:10px;
+	-moz-border-radius:10px;
+	border-radius:10px;
+	clear: both;
+	word-wrap: break-word;
+	width:auto;
+	
+	    }
+		
+		
+		
+.jqm-content{
+	background-color:#FFF;
+	background-image:url(icons/down.jpg);
+	min-height: inherit;
+	max-height:inherit;
+}
+		/* Adjust the width of the left reveal menu. */
+		#demo-page #left-panel.ui-panel {
+			width: 15em;
+		}
+		#demo-page #left-panel.ui-panel-closed {
+			width: 0;
+		}
+		#demo-page .ui-panel-page-content-position-left,
+		.ui-panel-dismiss-open.ui-panel-dismiss-position-left {
+			left: 15em;
+			right: -15em;
+		}
+		#demo-page .ui-panel-animate.ui-panel-page-content-position-left.ui-panel-page-content-display-reveal {
+			left: 0;
+			right: 0;
+			-webkit-transform: translate3d(15em,0,0);
+			-moz-transform: translate3d(15em,0,0);
+			transform: translate3d(15em,0,0);
+		}
+
+		/* Listview with collapsible list items. */
+	    .ui-listview > li .ui-collapsible-heading {
+	      margin: 0;
+	    }
+	    .ui-collapsible.ui-li-static {
+	      padding: 0;
+	      border: none !important;
+	    }
+	    .ui-collapsible + .ui-collapsible > .ui-collapsible-heading > .ui-btn {
+	      border-top: none !important;
+	    }
+	    /* Nested list button colors */
+	    .ui-listview .ui-listview .ui-btn {
+	    	background: #fff;
+	    }
+	    .ui-listview .ui-listview .ui-btn:hover {
+	    	background: #f5f5f5;
+	    }
+	    .ui-listview .ui-listview .ui-btn:active {
+	    	background: #f1f1f1;
+	    }
+
+		/* Reveal panel shadow on top of the listview menu (only to be used if you don't use fixed toolbars) */
+		#demo-page .ui-panel-display-reveal {
+			-webkit-box-shadow: none;
+			-moz-box-shadow: none;
+			box-shadow: none;
+		}
+		#demo-page .ui-panel-page-content-position-left {
+			-webkit-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+			-moz-box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+			box-shadow: -5px 0px 5px rgba(0,0,0,.15);
+		}
+
+		/* Setting a custom background image. */
+		#demo-page.ui-page-theme-a,
+		#demo-page .ui-panel-wrapper {
+			background-color: #fff;
+			background-image: url("../_assets/img/bg-pattern.png");
+			background-repeat: repeat-x;
+			background-position: left bottom;
+		}
+
+		/* Styling of the page contents */
+		.article p {
+			margin: 0 0 1em;
+			line-height: 1.5;
+		}
+		.article p img {
+			max-width: 100%;
+		}
+		.article p:first-child {
+			text-align: center;
+		}
+		.article small {
+			display: block;
+			font-size: 75%;
+			color: #c0c0c0;
+		}
+		.article p:last-child {
+			text-align: right;
+		}
+		.article a.ui-btn {
+			margin-right: 2em;
+		}
+		@media all and (min-width:769px) {
+			.article {
+				max-width: 994px;
+				margin: 0 auto;
+				padding-top: 4em;
+				-webkit-column-count: 2;
+				-moz-column-count: 2;
+				column-count: 2;
+				-webkit-column-gap: 2em;
+				-moz-column-gap: 2em;
+				column-gap: 2em;
+			}
+			/* Fix for issue with buttons and form elements
+			if CSS columns are used on a page with a panel. */
+			.article a.ui-btn {
+				-webkit-transform: translate3d(0,0,0);
+			}
+		}
+	</style>
+</head>
+<body>
+
+<div data-role="page" id="mainPage">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">E-GOVERNMENT</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<center>
+  <p><img src="icons/pix.png" width="200px;" height="200px;"   ></p>
+  <p><img src="images/2000px-Seal_of_the_President_of_Nigeria.svg.png" width="207" height="207"></p>
+</center>  
+<center>
+<a href="#panel-responsive-page1"  >English</a> . <a href="#panel-responsive-page1" >Igbo</a> . <a href="#panel-responsive-page1" data-transition="pop">Hausa</a> . <a href="#panel-responsive-page1" >Yoruba</a>
+
+<br>
+<br>
+ <h4><font  color="#003300">Developed By:Ikechukwu Kenneth<br><br>
+Supervised By: DR. SAMUEL UGBOAJA </font></h6>
+</center>
+ 
+</div>
+
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+    </div>
+</div>
+<div data-role="page" class="jqm-demos ui-responsive-panel" id="panel-responsive-page1" data-title="Panel responsive page">
+
+    <div data-role="header" data-theme="a" data-position="fixed">
+               <h1><div id="userDisplayName">E-GOVERNMENT</div></h1>
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content jqm-fullwidth">
+
+		
+        
+        
+        
+         <ul data-role="listview">
+        	<li data-icon="star"><center><img src="icons/pix.png" width="60px;" height="60px;"   ><br> E-GOVERNMENT</center></a></li>
+<!--        	<li data-icon="back"><a href="#demo-intro" data-rel="back">Demo intro</a></li>
+-->        
+         
+	        <li data-role="collapsible" data-inset="false" data-iconpos="right" >
+
+	          <h5>Administration</h5>
+
+	          <ul data-role="listview">
+              <li><a href="#Federal">Federal</a></li>
+	            <li><a href="#State">State</a></li>
+	         
+	          </ul>
+
+	        </li>
+            
+             <li data-role="collapsible" data-inset="false" data-iconpos="right" >
+
+	          <h5>History</h5>
+
+	          <ul data-role="listview">
+               <li><a href="#militry">Militry</a></li>
+              <li><a href="#Democracy">Democracy</a></li>
+	            <li><a href="#general">General</a></li> 
+	         
+	          </ul>
+
+	        </li>
+             <li data-role="collapsible" data-inset="false" data-iconpos="right" >
+
+	          <h5>News</h5>
+
+	          <ul data-role="listview">
+               <li><a href="#federalnews">By Federal</a></li>
+              <li><a href="#CreateGroup">By State</a></li>
+	            <li><a href="#Generalnews"  >General News</a></li>
+	            
+	         
+	          </ul>
+
+	        </li> </li>
+             <li data-role="collapsible" data-inset="false" data-iconpos="right" >
+
+	          <h5>Discussions</h5>
+
+	          <ul data-role="listview">
+               <li><a href="#contribution">Contributions</a></li>
+              <li><a href="#argument">Arguments</a></li>
+	            
+	         
+	          </ul>
+
+	        </li>
+            </ul>
+<br>
+<center><img   src="images/images.png" height="300px" width="300px"></center>
+</div>
+
+
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+    </div>
+</div><!-- /content -->
+
+<!-- /panel -->
+<div data-role="page" id="Federal">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">FEDERAL</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all">PRESENDENTIAL</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+<img  src="images/Buhari-campaign-photos-3-600x377.jpg" height="241" width="308">
+<img src="images/osinbajo.jpg" height="244" width="313">
+          <p><strong>Muhammadu Buhari</strong> GCFR (born 17 December 1942) is the President of Nigeria, in office since 29 May 2015. He is a retired Nigerian Army major general and was Head of State of Nigeria from 31 December 1983 to 27 August 1985, after taking power in a military coup d'état.The term Buharism is ascribed to the Buhari military government.</p>
+<p>He unsuccessfully ran for the office of President in the 2003, 2007 and 2011 general elections. In December 2014, he emerged as the presidential candidate of the All Progressives Congress for the March 2015 general elections. Buhari won the election, defeating the incumbent President Goodluck Jonathan.   This marked the first time in the history of Nigeria that an incumbent   president lost to an opposition candidate in a general election. He was  on 29 May 2015.</p>
+<p>Buhari has stated that he takes responsibility for whatever happened   under his watch during his military rule, saying that he cannot change   the past. He has described himself as a "converted democrat"</p>
+<p>&nbsp;</p>
+<p><strong>Oluyemi Oluleke Osinbajo</strong> (born 8 March 1957) is the Vice President of Nigeria, in office since May 29, 2015. He is also a Senior Advocate of Nigeria Professor of Law and until his inauguration as Vice President, a Senior Partner with SimmonsCooper Partners, a commercial law practice.He was conferred with the Grand Commander of the Order of the Niger on May 28, 2015.</p>
+ 
+</div>
+ </div>
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENsworn inT 2015</font></h2>
+   
+</div>
+
+</div>
+
+<div data-role="page" id="State">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">STATE GOVERNORS</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all">STATE GOVERNORS AND THIER PARTIES</h3>
+   
+ <div class="post-body entry-content" id="post-body-591552658693787610" itemprop="description articleBody">
+<br>
+<table border="1" cellpadding="2" cellspacing="0">
+  <thead>
+    <tr bgcolor="#E8E8E8">
+      <th title="Sort ascending" role="columnheader button" tabindex="0" scope="col" align="left">State</th>
+      <th title="Sort ascending" role="columnheader button" tabindex="0" scope="col" align="center">Current Governor</th>
+      <th title="Sort ascending" role="columnheader button" tabindex="0" scope="col" align="center">Party</th>
+      <th title="Sort ascending" role="columnheader button" tabindex="0" scope="col" align="center">Elected/Took office</th>
+      </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Abia_State" title="Abia State">Abia State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Okezie_Ikpeazu" title="Okezie Ikpeazu">Okezie Ikpeazu</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Adamawa_State" title="Adamawa State">Adamawa State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/w/index.php?title=Jibrilla_Bindow&action=edit&redlink=1" title="Jibrilla Bindow (page does not exist)">Jibrilla Bindow</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Akwa_Ibom_State" title="Akwa Ibom State">Akwa Ibom State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Udom_Gabriel_Emmanuel" title="Udom Gabriel Emmanuel">Udom Gabriel Emmanuel</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Anambra_State" title="Anambra State">Anambra State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Willie_Obiano" title="Willie Obiano">Willie Obiano</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressives_Grand_Alliance" title="All Progressives Grand Alliance">APGA</a></td>
+      <td align="center">2010</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Bauchi_State" title="Bauchi State">Bauchi State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Mohammed_Abdullahi_Abubakar" title="Mohammed Abdullahi Abubakar">Mohammed Abdullahi Abubakar</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Bayelsa_State" title="Bayelsa State">Bayelsa State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Henry_Dickson" title="Henry Dickson">Henry Dickson</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Benue_State" title="Benue State">Benue State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Samuel_Ortom" title="Samuel Ortom">Samuel Ortom</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Borno_State" title="Borno State">Borno State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Kashim_Shettima" title="Kashim Shettima">Kashim Shettima</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Cross_River_State" title="Cross River State">Cross River State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Benedict_Ayade" title="Benedict Ayade">Benedict Ayade</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Delta_State" title="Delta State">Delta State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Ifeanyi_Okowa" title="Ifeanyi Okowa">Ifeanyi Okowa</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Ebonyi_State" title="Ebonyi State">Ebonyi State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Dave_Umahi" title="Dave Umahi">Dave Umahi</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Edo_State" title="Edo State">Edo State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Adams_Oshiomhole" title="Adams Oshiomhole">Adams Oshiomhole</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress" title="All Progressive Congress">APC</a></td>
+      <td align="center">2008</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Ekiti_State" title="Ekiti State">Ekiti State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Ayo_Fayose" title="Ayo Fayose">Ayo Fayose</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2014</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Enugu_State" title="Enugu State">Enugu State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Ifeanyi_Ugwuanyi" title="Ifeanyi Ugwuanyi">Ifeanyi Ugwuanyi</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Gombe_State" title="Gombe State">Gombe State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Ibrahim_Hassan_Dankwambo" title="Ibrahim Hassan Dankwambo">Ibrahim Hassan Dankwambo</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Imo_State" title="Imo State">Imo State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Owelle_Rochas_Okorocha" title="Owelle Rochas Okorocha">Owelle Rochas Okorocha</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress" title="All Progressive Congress">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Jigawa_State" title="Jigawa State">Jigawa State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Badaru_Abubakar" title="Badaru Abubakar">Badaru Abubakar</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress" title="All Progressive Congress">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Kaduna_State" title="Kaduna State">Kaduna State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Nasir_Ahmad_el-Rufai" title="Nasir Ahmad el-Rufai">Nasir Ahmad el-Rufai</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress" title="All Progressive Congress">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Kano_State" title="Kano State">Kano State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Abdullahi_Umar_Ganduje" title="Abdullahi Umar Ganduje">Abdullahi Umar Ganduje</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Katsina_State" title="Katsina State">Katsina State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Aminu_Bello_Masari" title="Aminu Bello Masari">Aminu Bello Masari</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress" title="All Progressive Congress">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Kebbi_State" title="Kebbi State">Kebbi State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Abubakar_Atiku_Bagudu" title="Abubakar Atiku Bagudu">Abubakar Atiku Bagudu</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress" title="All Progressive Congress">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Kogi_State" title="Kogi State">Kogi State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/w/index.php?title=Idris_Wada&action=edit&redlink=1" title="Idris Wada (page does not exist)">Idris Wada</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Kwara_State" title="Kwara State">Kwara State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Abdulfatah_Ahmed" title="Abdulfatah Ahmed">Abdulfatah Ahmed</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Lagos_State" title="Lagos State">Lagos State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Akinwunmi_Ambode" title="Akinwunmi Ambode">Akinwunmi Ambode</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress" title="All Progressive Congress">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Nasarawa_State" title="Nasarawa State">Nasarawa State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Umaru_Tanko_Al-Makura" title="Umaru Tanko Al-Makura">Umaru Tanko Al-Makura</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Niger_State" title="Niger State">Niger State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Abubakar_Sani_Bello" title="Abubakar Sani Bello">Abubakar Sani Bello</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Ogun_State" title="Ogun State">Ogun State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Ibikunle_Oyelaja_Amosun" title="Ibikunle Oyelaja Amosun">Ibikunle Oyelaja Amosun</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Ondo_State" title="Ondo State">Ondo State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Olusegun_Mimiko" title="Olusegun Mimiko">Olusegun Mimiko</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a><a href="https://en.wikipedia.org/wiki/List_of_state_governors_of_Nigeria#cite_note-1">[1]</a></td>
+      <td align="center">2009</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Osun_State" title="Osun State">Osun State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Rauf_Aregbesola" title="Rauf Aregbesola">Rauf Aregbesola</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2010</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Oyo_State" title="Oyo State">Oyo State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Isiaka_Abiola_Ajimobi" title="Isiaka Abiola Ajimobi">Isiaka Abiola Ajimobi</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Plateau_State" title="Plateau State">Plateau State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/w/index.php?title=Simon_Lalong&action=edit&redlink=1" title="Simon Lalong (page does not exist)">Simon Lalong</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Rivers_State" title="Rivers State">Rivers State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Ezenwo_Nyesom_Wike" title="Ezenwo Nyesom Wike">Ezenwo Nyesom Wike</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Sokoto_State" title="Sokoto State">Sokoto State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Aminu_Waziri_Tambuwal" title="Aminu Waziri Tambuwal">Aminu Waziri Tambuwal</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Taraba_State" title="Taraba State">Taraba State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/w/index.php?title=Mr._Darius_Ishaku&action=edit&redlink=1" title="Mr. Darius Ishaku (page does not exist)">Mr. Darius Ishaku</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/People%27s_Democratic_Party_%28Nigeria%29" title="People's Democratic Party (Nigeria)">PDP</a></td>
+      <td align="center">2015</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Yobe_State" title="Yobe State">Yobe State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Ibrahim_Geidam" title="Ibrahim Geidam">Ibrahim Geidam</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Zamfara_State" title="Zamfara State">Zamfara State</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Abdul-Aziz_Yari_Abubakar" title="Abdul-Aziz Yari Abubakar">Abdul-Aziz Yari Abubakar</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/All_Progressive_Congress_%28Nigeria%29" title="All Progressive Congress (Nigeria)">APC</a></td>
+      <td align="center">2011</td>
+      </tr>
+    <tr bgcolor="#E8E8E8">
+      <th scope="col" align="left">Territory</th>
+      <th scope="col" align="center">Current Minister</th>
+      <th scope="col" align="center">Party</th>
+      <th scope="col" align="center">Took office</th>
+      </tr>
+    <tr>
+      <td align="left"><a href="https://en.wikipedia.org/wiki/Federal_Capital_Territory,_Nigeria" title="Federal Capital Territory, Nigeria">Abuja F.C.T.</a></td>
+      <td align="center"><a href="https://en.wikipedia.org/wiki/Bala_A._Muhammed" title="Bala A. Muhammed">Bala A. Muhammed</a></td>
+      <td align="center">...</td>
+      <td align="center">2010</td>
+      </tr>
+  </tbody>
+</table>
+<div style="clear: both;"></div>
+</div>
+</div>
+
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+    </div>
+</div>
+
+<div data-role="page" id="militry">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">MILITRY</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all">HISTORY OF NIGERIA IN MILITRY REGIN</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>A British sphere of influence
+
+Following the Napoleonic wars, the British expanded trade with the Nigerian interior. In 1885 British claims to a West African sphere of influence received international recognition and in the following year the Royal Niger Company was chartered under the leadership of Sir George Taubman Goldie. In 1900 the company's territory came under the control of the British Government, which moved to consolidate its hold over the area of modern Nigeria. On January 1, 1901 Nigeria became a British protectorate, part of the British Empire, the foremost world power at the time.
+In 1914, the area was formally united as the Colony and Protectorate of Nigeria. Administratively, Nigeria remained divided into the Northern and Southern Provinces and Lagos Colony. Western education and the development of a modern economy proceeded more rapidly in the south than in the north, with consequences felt in Nigeria's political life ever since. Following World War II, in response to the growth of Nigerian nationalism and demands for independence, successive constitutions legislated by the British Government moved Nigeria toward self-government on a representative and increasingly federal basis. On 1 October 1954, the colony became the autonomous Federation of Nigeria. By the middle of the 20th century, the great wave for independence was sweeping across Africa.</p>
+ 
+</div>
+ </div>
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+   
+</div>
+
+</div>
+<div data-role="page" id="Democracy">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">Democracy</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all">Democracy History in Nigeria</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>	
+Archaeological research has shown[who?] that people were already living in southwestern Nigeria (specifically Iwo-Eleru) as early as 9000 BC and perhaps earlier at Ugwuelle-Uturu (Okigwe) in southeastern Nigeria, where microliths were used.[1] Smelting furnaces at Taruga dating from the 4th century BC provide the oldest evidence of metalworking in Archaeology.The earliest known example of a fossil skeleton with negroid features, perhaps 10,000 years old, was found at Iii Ileru in western Nigeria and attests to the antiquity of habitation in the region.[2]Microlithic and ceramic industries were also developed by savanna pastoralists from at least the 4th millennium BC and were continued by subsequent agricultural communities. In the south, hunting and gathering gave way to subsistence farming in the first millennium BC and the cultivation of staple foods.The stone axe heads, imported in great quantities from the north and used in opening the forest for agricultural development, were venerated by the Yoruba descendants of neolithic pioneers as "thunderbolts" hurled to earth by the gods.[2]Kainji Dam excavations revealed ironworking by the 2nd century BC. The transition from Neolithic times to the Iron Age apparently was achieved without intermediate bronze production. Others suggest the technology moved west from the Nile Valley, although the Iron Age in the Niger River valley and the forest region appears to predate the introduction of metallurgy in the upper savanna by more than 800 years. The earliest identified iron using Nigerian culture is that of the Nok culture that thrived between approximately 900 BC and 200 AD on the Jos Plateau in northeastern Nigeria. Information is lacking from the first millennium AD following the Nok ascendancy, but by the 2nd millennium AD there was active trade from North Africa through the Sahara to the forest, with the people of the savanna acting as intermediaries in exchanges of various goods. </p>
+ 
+</div>
+ </div>
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+   
+</div>
+
+</div><div data-role="page" id="general">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">General History of Nigeria</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all">General History of Nigeria</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>	
+The history of Nigeria can be traced to prehistoric settlers living in the area as early as 11,000 BC. Numerous ancient African civilizations settled in the region that is today Nigeria. An example of one of the civilizations that settles in Nigeria is the Nri Kingdom. Islam reached Nigeria through the Hausa States during the 11th century. The Songhai Empire also occupied part of the region. Nigeria was colonized by Britain in 1885, and later became a British protectorate in 1901. Colonization lasted up until 1960, when an independence movement succeeded in gaining Nigeria its independence.
+
+Nigeria first became a republic at the time it was founded, but succumbed to military rule in 1966 after a bloody coup d'état. A separatist movement later formed the Republic of Biafra in 1967, leading to the three-year Nigerian Civil War. Nigeria became a republic once again after a new constitution was written in 1979. However, the republic was short-lived, when the military led by Major General Muhammadu Buhari seize again four years later. Buhari was overthrown and a new republic was founded in 1993, but was dissolved again by General Sani Abacha afterwards. Abacha died in 1998 and a fourth republic was later established the following year, ending three decades of military rule. Today, Nigeria is in the process with rebuilding its petroleum-based economy and fighting the Islamic militant group Boko  </p>
+ 
+</div>
+ </div>
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+   
+</div>
+
+
+</div>
+<div data-role="page" id="contribution">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">Citizen's Contributions</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all">Suggest your Mind To Develop the Country</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>	
+<label for="textarea-14">Suggest Here:</label>
+    <textarea data-mini="true" cols="40" rows="8" name="textarea-14" id="textarea-14"></textarea>
+<button class="ui-btn">Submit</button>
+  </p>
+ <center><img src="images/imagesr.jpg" height="188" width="268"></center>
+</div>
+ </div>
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+   
+</div>
+
+
+
+</div><div data-role="page" id="argument">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">Arguments</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all"><center>Stand on Your Right</center>
+<br>
+<font color="#FFFFFF">What is your view on Buhari's Administration?
+</font></h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>	
+ <label for="text-1">Your Name</label>
+     <input type="text" name="text-1" id="name" value="">
+     <label for="text-3">State</label>
+     <input type="text" data-clear-btn="true" name="text-3" id="state" value="">
+<label for="textarea-14">Say Something:</label>
+    <textarea data-mini="true" cols="40" rows="8" name="textarea-14" id="arg"></textarea>
+<button class="ui-btn" onClick="argument();">Submit</button>
+  </p>
+ <center><div id="displayArg"></div></center>
+</div>
+ </div>
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+   
+</div>
+
+
+</div><div data-role="page" id="Generalnews">
+
+    <div data-role="header"> 
+        <h6><font color="#FFFFFF">News</font></h6>
+         
+    </div><!-- /header -->
+
+    <div role="main" class="ui-content jqm-content" >
+<h3 class="ui-bar ui-bar-a ui-corner-all">General News</h3>
+      <div class="ui-body ui-body-a ui-corner-all">
+          <p>	
+BREAKING NEWS! Fire rages at Balogun Market  0
+BY OUR REPORTER ON	JANUARY 12, 2015 BREAKING NEWS
+Property worth millions of naira have been consumed by fire at the Balogun market on Lagos Island.
+
+The National Emergency Management Agency (NEMA) said the fire started at about 4.36am from an unknown source and has been raging despite efforts by the Fire service to put it under control.
+
+NEMA spokesman Ibrahim Fariloye said in a text message that efforts to put the fire under control is still on-going. He was silent on casualties.
+
+ ---------------------------------------------------------------------------------------------
+ 
+ 2 feared dead, 18 rescued in Lagos boat mishap  0
+BY OUR REPORTER ON	JANUARY 12, 2015 TRENDING
+By CHRISTOPHER OJI
+
+At least two persons were feared dead at the weekend when an 18-seater passenger boat in which they were trav­elling ran into another boat along the Ojo-Tin-Can Island water channel in Lagos.
+
+The victims, whose identities could not be ascertained as at press time were suspected to be the boat operator and his assistant. They were said to be the only ones on board the second boat as at the time of the accident. However, local divers reportedly rescued the 18 others who were travelling on board the passenger boat. They were said to be hospitalised in an undisclosed hospital at Ojo, Lagos.
+
+It was gathered that the boat carrying the 18 passengers allegedly took off from the Ojo area of Lagos at about 11.30 a.m. on Friday and was heading towards Tin-Can/Coconut when it rammed into the second boat coming from the opposite direction. It was also learnt that those on the Tin-Can -bound boat recovered the bodies of the two victims from the water.
+
+They were rushed to an undisclosed hospital located in Coconut area, where they were confirmed dead, it was gathered.
+
+“Those who could swim, swam their way to a nearby island, while few others were rescued by a combined team of fishermen and local dredgers,” a witness said. The source blamed the assistant operator of the boat they were traveling in for the accident. The source, who identified himself as Subar, a clearing agent, who works with a shipping company in Lagos, attributed the incident to the recklessness of the assistant operator of the boat, who was sitting down instead of standing while steering the boat.
+  </p>
+ <center><img src="images/images.jpg" height="300px" width="300px"></center>
+</div>
+ </div>
+<div data-role="footer" data-position="fixed">
+
+        <h2><font color="#FFFFFF">All Rights Reserved E-GOVERNMENT 2015</font></h2>
+   
+</div>
+
+</div>
+</body>
+</html>
